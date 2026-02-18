@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
+
 import Sidebar from "../components/Sidebar";
 import WeatherLayout from "../components/WeatherLayout";
 import MainWeatherCard from "../components/MainWeatherCard";
@@ -11,25 +13,49 @@ const Dashboard = () => {
   const [city, setCity] = useState("Accra");
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        // Current Weather
-        const weatherRes = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
-        );
-        const weatherData = await weatherRes.json();
-        setWeather(weatherData);
+        setLoading(true);
+        setError("");
 
-        // 5-day / 3-hour Forecast
-        const forecastRes = await fetch(
-          `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`
+        // Current Weather
+        const weatherRes = await axios.get(
+          "https://api.openweathermap.org/data/2.5/weather",
+          {
+            params: {
+              q: city,
+              units: "metric",
+              appid: API_KEY,
+            },
+          }
         );
-        const forecastData = await forecastRes.json();
-        setForecast(forecastData);
-      } catch (error) {
-        console.log("Error fetching weather:", error);
+
+        setWeather(weatherRes.data);
+
+        // Forecast
+        const forecastRes = await axios.get(
+          "https://api.openweathermap.org/data/2.5/forecast",
+          {
+            params: {
+              q: city,
+              units: "metric",
+              appid: API_KEY,
+            },
+          }
+        );
+
+        setForecast(forecastRes.data);
+
+      } catch (err) {
+        setError("City not found");
+        setWeather(null);
+        setForecast(null);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -39,13 +65,15 @@ const Dashboard = () => {
   return (
     <WeatherLayout>
       <main className="flex-1 p-8 flex gap-8">
-        <Sidebar />
+        <Sidebar weather={weather} />
 
         <div className="flex-1 space-y-6">
           <MainWeatherCard
             city={city}
             setCity={setCity}
             weather={weather}
+            loading={loading}
+            error={error}
           />
 
           <ForecastSection

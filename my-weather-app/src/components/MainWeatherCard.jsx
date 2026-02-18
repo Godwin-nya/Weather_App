@@ -1,4 +1,4 @@
-const MainWeatherCard = ({ city, setCity, weather }) => {
+const MainWeatherCard = ({ city, setCity, weather, loading, error }) => {
 
   const handleSearch = (e) => {
     if (e.key === "Enter") {
@@ -16,12 +16,17 @@ const MainWeatherCard = ({ city, setCity, weather }) => {
       />
 
       <div className="bg-[#1F2937] p-6 rounded-2xl flex justify-between items-center mt-4">
-        {weather && weather.main && (
+
+        {loading && <p>Loading...</p>}
+
+        {error && <p className="text-red-500">{error}</p>}
+
+        {weather && !loading && (
           <>
             <div>
               <p className="text-gray-400 text-lg">
-  {weather.name}, {weather.sys.country}
-</p>
+                {weather.name}, {weather.sys.country}
+              </p>
 
               <h1 className="text-5xl font-bold mt-2">
                 {Math.round(weather.main.temp)}°C
