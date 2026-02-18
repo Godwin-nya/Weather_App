@@ -33,7 +33,9 @@ const ForecastSection = ({ forecast, weather }) => {
         </div>
 
         {/* Tomorrow */}
-        <div className="bg-[#1F2937] p-6 rounded-2xl">
+        <div
+          className="bg-[#1F2937] p-6 rounded-2xl"
+        >
           <h3 className="text-lg font-semibold mb-4">Tomorrow</h3>
 
           {forecast?.list && (
@@ -62,9 +64,6 @@ const ForecastSection = ({ forecast, weather }) => {
       {/* Sunrise */}
       <div className="bg-[#1F2937] p-6 rounded-2xl flex flex-col justify-between">
         <h3 className="text-lg font-semibold mb-6">Sunrise & Sunset</h3>
-         <Sunrise className="w-6 h-6 text-orange-400" />
-                <p className="text-gray-400">Sunrise</p>
-        
 
         {weather?.sys && (
           <div className="space-y-6">

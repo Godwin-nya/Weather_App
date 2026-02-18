@@ -10,7 +10,7 @@ const Sidebar = ({ weather }) => {
       : "#";
 
   return (
-    <aside className="w-20 bg-[#111827] flex flex-col items-center py-6 space-y-8">
+    <aside className="w-20 bg-[#111827] flex flex-col items-center py-6 space-y-8 hidden md:flex w-20">
 
       {/* Logo */}
       <CloudLightning className="text-purple-500 w-7 h-7" />

@@ -3,6 +3,7 @@ import axios from "axios";
 
 import Sidebar from "../components/Sidebar";
 import WeatherLayout from "../components/WeatherLayout";
+import SearchBar from "../components/SearchBar";
 import MainWeatherCard from "../components/MainWeatherCard";
 import ForecastSection from "../components/ForecastSection";
 import TodayHighlight from "../components/TodayHighlight";
@@ -31,7 +32,7 @@ const Dashboard = () => {
               units: "metric",
               appid: API_KEY,
             },
-          }
+          },
         );
 
         setWeather(weatherRes.data);
@@ -45,13 +46,16 @@ const Dashboard = () => {
               units: "metric",
               appid: API_KEY,
             },
-          }
+          },
         );
 
         setForecast(forecastRes.data);
-
       } catch (err) {
-        setError("City not found");
+        if (err.response?.status === 404) {
+          setError("City not found. Please try again.");
+        } else {
+          setError("Something went wrong. Check your connection.");
+        }
         setWeather(null);
         setForecast(null);
       } finally {
@@ -64,10 +68,13 @@ const Dashboard = () => {
 
   return (
     <WeatherLayout>
-      <main className="flex-1 p-8 flex gap-8">
+      <main className="flex flex-col lg:flex-row gap-8">
+
         <Sidebar weather={weather} />
+      
 
         <div className="flex-1 space-y-6">
+            <SearchBar  setCity={setCity} />
           <MainWeatherCard
             city={city}
             setCity={setCity}
@@ -76,10 +83,7 @@ const Dashboard = () => {
             error={error}
           />
 
-          <ForecastSection
-            forecast={forecast}
-            weather={weather}
-          />
+          <ForecastSection forecast={forecast} weather={weather} />
         </div>
 
         <div className="w-[350px] bg-[#111827] p-6 rounded-2xl min-h-[calc(100vh-4rem)]">

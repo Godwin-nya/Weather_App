@@ -1,19 +1,10 @@
 const MainWeatherCard = ({ city, setCity, weather, loading, error }) => {
 
-  const handleSearch = (e) => {
-    if (e.key === "Enter") {
-      setCity(e.target.value);
-    }
-  };
+  
 
   return (
     <>
-      <input
-        type="text"
-        onKeyDown={handleSearch}
-        className="border-2 border-gray-600 bg-transparent text-white w-80 rounded-lg p-2"
-        placeholder="Search location..."
-      />
+     
 
       <div className="bg-[#1F2937] p-6 rounded-2xl flex justify-between items-center mt-4">
 
@@ -43,7 +34,7 @@ const MainWeatherCard = ({ city, setCity, weather, loading, error }) => {
             </div>
 
             <img
-              src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+              src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
               alt="weather icon"
             />
           </>
