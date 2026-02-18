@@ -15,9 +15,9 @@ const MainWeatherCard = ({ city, setCity, weather, loading, error }) => {
         {weather && !loading && (
           <>
             <div>
-              <p className="text-gray-400 text-lg">
+              <h3 className="text-gray-400 text-lg">
                 {weather.name}, {weather.sys.country}
-              </p>
+              </h3>
 
               <h1 className="text-5xl font-bold mt-2">
                 {Math.round(weather.main.temp)}°C

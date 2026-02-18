@@ -68,13 +68,11 @@ const Dashboard = () => {
 
   return (
     <WeatherLayout>
-      <main className="flex flex-col lg:flex-row gap-8">
-
+      <main className="flex-1 p-4 md:p-6 lg:p-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
         <Sidebar weather={weather} />
-      
 
         <div className="flex-1 space-y-6">
-            <SearchBar  setCity={setCity} />
+          <SearchBar setCity={setCity} />
           <MainWeatherCard
             city={city}
             setCity={setCity}

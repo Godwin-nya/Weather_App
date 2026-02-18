@@ -4,7 +4,7 @@ const ForecastSection = ({ forecast, weather }) => {
   const todayForecast = forecast?.list?.slice(0, 6);
 
   return (
-    <div className="mt-6 grid grid-cols-3 gap-6">
+<div className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
       {/* LEFT SIDE */}
       <div className="col-span-2 flex flex-col gap-6">
         {/* Today */}
