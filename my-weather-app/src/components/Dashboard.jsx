@@ -72,13 +72,17 @@ const Dashboard = () => {
       <Header />
       <WeatherLayout>
         <main className="flex-1 p-4 md:p-6 lg:p-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
-          <Sidebar weather={weather} />
+          {/* Sidebar */}
+          <div className="hidden lg:block">
+            <Sidebar weather={weather} />
+          </div>
 
+          {/* Main Content */}
           <div className="flex-1 space-y-6">
             <SearchBar setCity={setCity} />
+
             <MainWeatherCard
               city={city}
-              setCity={setCity}
               weather={weather}
               loading={loading}
               error={error}
@@ -87,11 +91,13 @@ const Dashboard = () => {
             <ForecastSection forecast={forecast} weather={weather} />
           </div>
 
-          <div className="w-[350px] bg-[#111827] p-6 rounded-2xl min-h-[calc(100vh-4rem)]">
+          {/* Right Panel */}
+          <div className="w-full lg:w-[350px] bg-[#111827] p-4 sm:p-6 rounded-2xl">
             <TodayHighlight weather={weather} />
           </div>
         </main>
       </WeatherLayout>
+
       <Footer />
     </div>
   );
