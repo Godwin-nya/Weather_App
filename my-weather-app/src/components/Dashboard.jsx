@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import WeatherLayout from "../components/WeatherLayout";
 import SearchBar from "../components/SearchBar";
 import MainWeatherCard from "../components/MainWeatherCard";
 import ForecastSection from "../components/ForecastSection";
 import TodayHighlight from "../components/TodayHighlight";
+import Footer from "../components/Footer";
 
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -67,28 +68,32 @@ const Dashboard = () => {
   }, [city]);
 
   return (
-    <WeatherLayout>
-      <main className="flex-1 p-4 md:p-6 lg:p-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
-        <Sidebar weather={weather} />
+    <div>
+      <Header />
+      <WeatherLayout>
+        <main className="flex-1 p-4 md:p-6 lg:p-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
+          <Sidebar weather={weather} />
 
-        <div className="flex-1 space-y-6">
-          <SearchBar setCity={setCity} />
-          <MainWeatherCard
-            city={city}
-            setCity={setCity}
-            weather={weather}
-            loading={loading}
-            error={error}
-          />
+          <div className="flex-1 space-y-6">
+            <SearchBar setCity={setCity} />
+            <MainWeatherCard
+              city={city}
+              setCity={setCity}
+              weather={weather}
+              loading={loading}
+              error={error}
+            />
 
-          <ForecastSection forecast={forecast} weather={weather} />
-        </div>
+            <ForecastSection forecast={forecast} weather={weather} />
+          </div>
 
-        <div className="w-[350px] bg-[#111827] p-6 rounded-2xl min-h-[calc(100vh-4rem)]">
-          <TodayHighlight weather={weather} />
-        </div>
-      </main>
-    </WeatherLayout>
+          <div className="w-[350px] bg-[#111827] p-6 rounded-2xl min-h-[calc(100vh-4rem)]">
+            <TodayHighlight weather={weather} />
+          </div>
+        </main>
+      </WeatherLayout>
+      <Footer />
+    </div>
   );
 };
 

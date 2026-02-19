@@ -31,6 +31,10 @@ const MainWeatherCard = ({ city, setCity, weather, loading, error }) => {
               <p className="mt-4 text-lg capitalize">
                 {weather.weather[0].description}
               </p>
+              
+              <p className="mt-2 text-lg text-gray-500">
+                {new Date().toLocaleDateString()}
+              </p>
             </div>
 
             <img
