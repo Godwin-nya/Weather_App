@@ -18,6 +18,11 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const [recentCities, setRecentCities] = useState(() => {
+  const saved = localStorage.getItem("recentCities");
+  return saved ? JSON.parse(saved) : [];
+});
+
   useEffect(() => {
     const fetchWeather = async () => {
       try {
@@ -37,6 +42,18 @@ const Dashboard = () => {
         );
 
         setWeather(weatherRes.data);
+
+
+        const searchedCity = weatherRes.data.name;
+
+// Remove duplicate if exists
+const updatedCities = [
+  searchedCity,
+  ...recentCities.filter(c => c !== searchedCity)
+].slice(0, 5); // keep only 5
+
+setRecentCities(updatedCities);
+localStorage.setItem("recentCities", JSON.stringify(updatedCities));
 
         // Forecast
         const forecastRes = await axios.get(
@@ -79,7 +96,7 @@ const Dashboard = () => {
 
           {/* Main Content */}
           <div className="flex-1 space-y-6">
-            <SearchBar setCity={setCity} />
+            <SearchBar setCity={setCity} recentCities={recentCities} />
 
             <MainWeatherCard
               city={city}
