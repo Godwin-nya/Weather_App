@@ -5,7 +5,7 @@ const TodayHighlight = ({ weather }) => {
   if (!weather) return null;
 
   return (
-    <div className="mt-8">
+    <div className="bg-white dark:bg-[#111827] border border-gray-300 p-4 sm:p-6 rounded-2xl h-full">
       <h2 className="text-xl font-semibold mb-6">Today Highlight</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -36,6 +36,5 @@ const TodayHighlight = ({ weather }) => {
     </div>
   );
 };
-
 
 export default TodayHighlight;

@@ -4,18 +4,18 @@ const ForecastSection = ({ forecast, weather }) => {
   const todayForecast = forecast?.list?.slice(0, 6);
 
   return (
-<div className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div className="text-red mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
       {/* LEFT SIDE */}
       <div className="col-span-2 flex flex-col gap-6">
         {/* Today */}
-        <div className="bg-[#1F2937] p-6 rounded-2xl">
+       <div className="bg-white dark:bg-[#1F2937] p-6 rounded-2xl  border border-gray-300">
           <h3 className="text-lg font-semibold mb-4">Today</h3>
 
           <div className="grid grid-cols-6 gap-4">
             {todayForecast?.map((item, index) => (
               <div
                 key={index}
-                className="bg-[#111827] p-4 rounded-xl flex flex-col items-center"
+                className="bg-white dark:bg-[#1F2937] p-4 rounded-xl flex flex-col items-center"
               >
                 <p className="text-gray-400 text-sm">
                   {new Date(item.dt_txt).getHours()}:00
@@ -33,9 +33,7 @@ const ForecastSection = ({ forecast, weather }) => {
         </div>
 
         {/* Tomorrow */}
-        <div
-          className="bg-[#1F2937] p-6 rounded-2xl"
-        >
+        <div className="bg-white dark:bg-[#1F2937] p-6 rounded-2xl  border border-gray-300">
           <h3 className="text-lg font-semibold mb-4">Tomorrow</h3>
 
           {forecast?.list && (
@@ -62,7 +60,7 @@ const ForecastSection = ({ forecast, weather }) => {
       </div>
 
       {/* Sunrise */}
-      <div className="bg-[#1F2937] p-6 rounded-2xl flex flex-col justify-between">
+      <div className="bg-white dark:bg-[#1F2937] p-6 rounded-2xl  border border-gray-300">
         <h3 className="text-lg font-semibold mb-6">Sunrise & Sunset</h3>
 
         {weather?.sys && (

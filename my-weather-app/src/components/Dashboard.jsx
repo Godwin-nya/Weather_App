@@ -23,6 +23,23 @@ const Dashboard = () => {
   return saved ? JSON.parse(saved) : [];
 });
 
+const [theme, setTheme] = useState(() => {
+  return localStorage.getItem("theme") || "dark";
+});
+
+useEffect(() => {
+  const root = window.document.documentElement;
+
+  if (theme === "dark") {
+    root.classList.add("dark");
+  } else {
+    root.classList.remove("dark");
+  }
+
+  localStorage.setItem("theme", theme);
+}, [theme]);
+
+
   useEffect(() => {
     const fetchWeather = async () => {
       try {
@@ -85,8 +102,9 @@ localStorage.setItem("recentCities", JSON.stringify(updatedCities));
   }, [city]);
 
   return (
-    <div>
-      <Header />
+    <div className="min-h-screen bg-gray-100 dark:bg-[#0B1120] text-gray-900 dark:text-white ">
+      <Header theme={theme} setTheme={setTheme} />
+
       <WeatherLayout>
         <main className="flex-1 p-4 md:p-6 lg:p-8 flex flex-col lg:flex-row gap-6 lg:gap-8">
           {/* Sidebar */}
@@ -109,7 +127,7 @@ localStorage.setItem("recentCities", JSON.stringify(updatedCities));
           </div>
 
           {/* Right Panel */}
-          <div className="w-full lg:w-[350px] bg-[#111827] p-4 sm:p-6 rounded-2xl">
+         <div className="w-full lg:w-[350px] bg-white dark:bg-[#111827] p-4 sm:p-6 rounded-2xl ">
             <TodayHighlight weather={weather} />
           </div>
         </main>

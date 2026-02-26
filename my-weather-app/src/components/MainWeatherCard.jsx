@@ -6,7 +6,7 @@ const MainWeatherCard = ({ city, setCity, weather, loading, error }) => {
     <>
      
 
-      <div className="bg-[#1F2937] p-6 rounded-2xl flex justify-between items-center mt-4">
+      <div className="bg-white dark:bg-[#1F2937] p-6 rounded-2xl flex justify-between items-center mt-4  border border-gray-300">
 
         {loading && <p>Loading...</p>}
 
@@ -31,6 +31,7 @@ const MainWeatherCard = ({ city, setCity, weather, loading, error }) => {
               <p className="mt-4 text-lg capitalize">
                 {weather.weather[0].description}
               </p>
+
               <p>{new Date(weather.dt * 1000).toLocaleDateString()}</p>
             </div>
 

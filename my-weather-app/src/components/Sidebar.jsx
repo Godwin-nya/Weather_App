@@ -10,7 +10,7 @@ const Sidebar = ({ weather }) => {
       : "#";
 
   return (
-    <aside className="hidden md:flex w-24 bg-[#111827] h-full flex-col items-center py-6 space-y-8">
+    <aside className="hidden md:flex w-24 bg-white dark:bg-[#111827] h-full flex-col items-center py-6 space-y-8 border border-gray-300 dark:border-gray-600 rounded-2xl ">
 
 
       {/* Logo */}

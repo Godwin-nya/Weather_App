@@ -19,14 +19,11 @@ const SearchBar = ({ setCity, recentCities }) => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Search city..."
-          className="w-full p-3 rounded-xl 
-                     bg-white dark:bg-[#1F2937]
-                     text-gray-900 dark:text-white
-                     border border-gray-300 dark:border-gray-600"
+          className="w-full p-3 rounded-xl bg-white dark:bg-[#1F2937] text-gray-900 dark:text-white border border-gray-300 dark:border-gray-600"
         />
         <button
           type="submit"
-          className="absolute right-2 top-1/5 transform -translate-y-1/2 bg-purple-600 px-4 py-1 rounded-lg hover:bg-purple-700 transition"
+          className="absolute right-2 top-1/5 transform -translate-y-1/2 bg-purple-600 px-4 py-1 rounded-lg hover:bg-purple-700"
         >
           Search
         </button>
@@ -35,8 +32,7 @@ const SearchBar = ({ setCity, recentCities }) => {
       {/* Recent Suggestions */}
       {recentCities.length > 0 && (
         <div
-          className="mt-2 bg-white dark:bg-[#1F2937] 
-                        rounded-xl shadow-md p-2"
+          className="mt-2 bg-white dark:bg-[#1F2937] rounded-xl shadow-md p-2"
         >
           <p className="text-sm opacity-60 mb-2">Recent Searches</p>
 
@@ -45,9 +41,7 @@ const SearchBar = ({ setCity, recentCities }) => {
               <button
                 key={index}
                 onClick={() => setCity(city)}
-                className="px-3 py-1 text-sm rounded-full 
-                           bg-gray-200 dark:bg-gray-700
-                           hover:scale-105 transition"
+                className="px-3 py-1 text-sm rounded-full bg-gray-200 dark:bg-gray-700 hover:scale-105"
               >
                 {city}
               </button>
